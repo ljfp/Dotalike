@@ -4,14 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "Character/CharacterBase.h"
+#include "Interaction/TargetInterface.h"
 #include "EnemyCharacter.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class DOTALIKE_API AEnemyCharacter : public ACharacterBase
+class DOTALIKE_API AEnemyCharacter : public ACharacterBase, public ITargetInterface
 {
 	GENERATED_BODY()
-	
+
+public:
+	AEnemyCharacter();
+	virtual void HighlightActor() override;
+	virtual void UnHighlightActor() override;
 };
