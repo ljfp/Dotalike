@@ -3,18 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Character/CharacterBase.h"
-#include "AuraCharacter.generated.h"
+#include "GameFramework/GameModeBase.h"
+#include "DotalikeGameModeBase.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class DOTALIKE_API AAuraCharacter : public ACharacterBase
+class DOTALIKE_API ADotalikeGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-
-public:
-	AAuraCharacter();
 	
 };
