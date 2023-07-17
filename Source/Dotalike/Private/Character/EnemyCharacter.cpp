@@ -3,10 +3,18 @@
 
 #include "Character/EnemyCharacter.h"
 #include "Dotalike/Dotalike.h"
+#include "AbilitySystem/DotalikeAbilitySystemComponent.h"
+#include "AbilitySystem/DotalikeAttributeSet.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+
+	AbilitySystemComponent = CreateDefaultSubobject<UDotalikeAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
+
+	AttributeSet = CreateDefaultSubobject<UDotalikeAttributeSet>("AttributeSet");
 }
 
 void AEnemyCharacter::HighlightActor()
@@ -23,4 +31,12 @@ void AEnemyCharacter::UnHighlightActor()
 {
 	GetMesh()->SetRenderCustomDepth(false);
 	Weapon->SetRenderCustomDepth(false);
+}
+
+void AEnemyCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	check(AbilitySystemComponent);
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 }

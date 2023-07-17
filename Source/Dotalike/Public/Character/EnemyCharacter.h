@@ -17,6 +17,11 @@ class DOTALIKE_API AEnemyCharacter : public ACharacterBase, public ITargetInterf
 
 public:
 	AEnemyCharacter();
+
+	// Belongs to ITargetInterface
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
+
+protected:
+	virtual void BeginPlay() override;
 };
