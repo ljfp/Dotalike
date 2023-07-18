@@ -3,6 +3,8 @@
 
 #include "Character/AuraCharacter.h"
 #include "Player/AuraPlayerState.h"
+#include "Player/AuraPlayerController.h"
+#include "UI/HUD/DotalikeHUD.h"
 #include "AbilitySystem/DotalikeAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -41,4 +43,14 @@ void AAuraCharacter::InitAbilityActorInfo()
 	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState, this);
 	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
 	AttributeSet = AuraPlayerState->GetAttributeSet();
+
+	// PlayerController can and will be null in the case of a server-only player.
+	if (AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(GetController()))
+	{
+		if (ADotalikeHUD* DotalikeHUD = Cast<ADotalikeHUD>(AuraPlayerController->GetHUD()))
+		{
+			DotalikeHUD->InitOverlay(AuraPlayerController, AuraPlayerState, AbilitySystemComponent, AttributeSet);
+		}
+
+	}
 }
