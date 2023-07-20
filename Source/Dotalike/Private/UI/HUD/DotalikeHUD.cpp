@@ -30,6 +30,6 @@ void ADotalikeHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbility
 	UOverlayWidgetController* WidgetController = GetOverlayWidgetController(WidgetControllerParams);
 	
 	OverlayWidget->SetWidgetController(WidgetController);
-
+	WidgetController->BroadcastInitialValues();
 	Widget->AddToViewport();
 }

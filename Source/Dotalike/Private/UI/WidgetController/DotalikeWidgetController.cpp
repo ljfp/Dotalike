@@ -10,3 +10,8 @@ void UDotalikeWidgetController::SetWidgetControllerParams(const FWidgetControlle
 	AbilitySystemComponent = WCParams.AbilitySystemComponent;
 	AttributeSet = WCParams.AttributeSet;
 }
+
+void UDotalikeWidgetController::BroadcastInitialValues()
+{
+	// Abstract class to be implemented by children
+}
