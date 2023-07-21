@@ -42,8 +42,8 @@ class DOTALIKE_API UDotalikeWidgetController : public UObject
 public:
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
-
 	virtual void BroadcastInitialValues();
+	virtual void BindCallbackToDependencies();
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")

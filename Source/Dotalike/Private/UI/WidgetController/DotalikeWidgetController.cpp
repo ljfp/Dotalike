@@ -15,3 +15,8 @@ void UDotalikeWidgetController::BroadcastInitialValues()
 {
 	// Abstract class to be implemented by children
 }
+
+void UDotalikeWidgetController::BindCallbackToDependencies()
+{
+	// Abstract class to be implemented by children
+}

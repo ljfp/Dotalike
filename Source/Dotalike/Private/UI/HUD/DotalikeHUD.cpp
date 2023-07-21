@@ -12,6 +12,7 @@ UOverlayWidgetController* ADotalikeHUD::GetOverlayWidgetController(const FWidget
 	{
 		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
+		OverlayWidgetController->BindCallbackToDependencies();
 
 		return OverlayWidgetController;
 	}

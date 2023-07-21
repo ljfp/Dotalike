@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UI/WidgetController/DotalikeWidgetController.h"
+#include "GameplayEffectTypes.h"
 #include "OverlayWidgetController.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
@@ -19,11 +20,15 @@ class DOTALIKE_API UOverlayWidgetController : public UDotalikeWidgetController
 
 public:
 	virtual void BroadcastInitialValues() override;
-	
+	virtual void BindCallbackToDependencies() override;
+
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
 	FOnHealthChangedSignature OnHealthChanged;
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
 	FOnMaxHealthChangedSignature OnMaxHealthChanged;
+
+protected:
+	void OnHealthChangedCallback(const FOnAttributeChangeData& Data) const;
+	void OnMaxHealthChangedCallback(const FOnAttributeChangeData& Data) const;
 };
-  
