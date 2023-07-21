@@ -11,8 +11,11 @@ void UOverlayWidgetController::BroadcastInitialValues()
 
 	OnHealthChanged.Broadcast(DotalikeAttributeSet->GetHealth());
 	OnMaxHealthChanged.Broadcast(DotalikeAttributeSet->GetMaxHealth());
+	OnManaChanged.Broadcast(DotalikeAttributeSet->GetMana());
+	OnMaxManaChanged.Broadcast(DotalikeAttributeSet->GetMaxMana());
 
-	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(DotalikeAttributeSet->GetHealthAttribute());
+	//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(DotalikeAttributeSet->GetHealthAttribute());
+	//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(DotalikeAttributeSet->GetManaAttribute());
 }
 
 void UOverlayWidgetController::BindCallbackToDependencies()
@@ -24,6 +27,12 @@ void UOverlayWidgetController::BindCallbackToDependencies()
 
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(DotalikeAttributeSet->GetMaxHealthAttribute())
 		.AddUObject(this, &UOverlayWidgetController::OnMaxHealthChangedCallback);
+
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(DotalikeAttributeSet->GetManaAttribute())
+		.AddUObject(this, &UOverlayWidgetController::OnManaChangedCallback);
+
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(DotalikeAttributeSet->GetMaxManaAttribute())
+		.AddUObject(this, &UOverlayWidgetController::OnMaxManaChangedCallback);
 }
 
 void UOverlayWidgetController::OnHealthChangedCallback(const FOnAttributeChangeData& Data) const
@@ -34,4 +43,14 @@ void UOverlayWidgetController::OnHealthChangedCallback(const FOnAttributeChangeD
 void UOverlayWidgetController::OnMaxHealthChangedCallback(const FOnAttributeChangeData& Data) const
 {
 	OnMaxHealthChanged.Broadcast(Data.NewValue);
+}
+
+void UOverlayWidgetController::OnManaChangedCallback(const FOnAttributeChangeData& Data) const
+{
+	OnManaChanged.Broadcast(Data.NewValue);
+}
+
+void UOverlayWidgetController::OnMaxManaChangedCallback(const FOnAttributeChangeData& Data) const
+{
+	OnMaxManaChanged.Broadcast(Data.NewValue);
 }

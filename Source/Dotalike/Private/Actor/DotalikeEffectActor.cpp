@@ -29,6 +29,7 @@ void ADotalikeEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, A
 		//TODO: Remove const_cast. Use Gameplay Effect instead.
 		UDotalikeAttributeSet* MutableDotalikeAttributeSet = const_cast<UDotalikeAttributeSet*>(DotalikeAttributeSet);
 		MutableDotalikeAttributeSet->SetHealth(DotalikeAttributeSet->GetHealth() + 25.f);
+		MutableDotalikeAttributeSet->SetMana(DotalikeAttributeSet->GetMana() - 25.f);
 		Destroy();
 	}
 }
