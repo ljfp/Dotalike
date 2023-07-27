@@ -8,8 +8,8 @@ UDotalikeAttributeSet::UDotalikeAttributeSet()
 {
 	InitHealth(50.f);
 	InitMaxHealth(100.f);
-	InitMana(50.f);
-	InitMaxMana(50.f);
+	InitMana(10.f);
+	InitMaxMana(100.f);
 }
 
 void UDotalikeAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
