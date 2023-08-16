@@ -23,6 +23,23 @@ void UDotalikeAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
 	DOREPLIFETIME_CONDITION_NOTIFY(UDotalikeAttributeSet, MaxMana, COND_None, REPNOTIFY_Always);
 }
 
+void UDotalikeAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
+{
+	Super::PreAttributeChange(Attribute, NewValue);
+
+	if (Attribute == GetHealthAttribute())
+	{
+		// Clamp Health
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth());
+	}
+
+	if (Attribute == GetManaAttribute())
+	{
+		// Clamp Mana
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxMana());
+	}
+}
+
 void UDotalikeAttributeSet::OnRep_Health(const FGameplayAttributeData& OldHealth) const
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UDotalikeAttributeSet, Health, OldHealth);

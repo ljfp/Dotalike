@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "AuraPlayerController.generated.h"
+#include "DotalikePlayerController.generated.h"
 
 class UInputMappingContext;
 class UInputAction;
@@ -15,12 +15,12 @@ class ITargetInterface;
  * 
  */
 UCLASS()
-class DOTALIKE_API AAuraPlayerController : public APlayerController
+class DOTALIKE_API ADotalikePlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
 public:
-	AAuraPlayerController();
+	ADotalikePlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
 
 protected:
@@ -29,7 +29,7 @@ protected:
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
-	TObjectPtr<UInputMappingContext> AuraContext;
+	TObjectPtr<UInputMappingContext> DotalikeContext;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;

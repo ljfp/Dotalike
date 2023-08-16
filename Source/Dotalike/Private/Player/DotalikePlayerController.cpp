@@ -1,32 +1,32 @@
 // Copyright 2023 Lautaro Javier Fernandez Pricco. All rights reserved.
 
 
-#include "Player/AuraPlayerController.h"
+#include "Player/DotalikePlayerController.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Interaction/TargetInterface.h"
 
-AAuraPlayerController::AAuraPlayerController()
+ADotalikePlayerController::ADotalikePlayerController()
 {
 	bReplicates = true;
 }
 
-void AAuraPlayerController::PlayerTick(float DeltaTime)
+void ADotalikePlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
 
 	CursorTrace();
 }
 
-void AAuraPlayerController::BeginPlay()
+void ADotalikePlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	check(AuraContext);
+	check(DotalikeContext);
 
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
 	if (Subsystem)
 	{
-		Subsystem->AddMappingContext(AuraContext, 0);
+		Subsystem->AddMappingContext(DotalikeContext, 0);
 	}
 
 	bShowMouseCursor = true;
@@ -38,16 +38,16 @@ void AAuraPlayerController::BeginPlay()
 	SetInputMode(InputModeData);
 }
 
-void AAuraPlayerController::SetupInputComponent()
+void ADotalikePlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 
-	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ADotalikePlayerController::Move);
 }
 
-void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
+void ADotalikePlayerController::Move(const FInputActionValue& InputActionValue)
 {
 	const FVector2D& InputAxisVector = InputActionValue.Get<FVector2D>();
 	const FRotator Rotation = GetControlRotation();
@@ -63,7 +63,7 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 	}
 }
 
-void AAuraPlayerController::CursorTrace()
+void ADotalikePlayerController::CursorTrace()
 {
 	FHitResult CursorHit;
 	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);

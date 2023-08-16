@@ -1,11 +1,11 @@
 // Copyright 2023 Lautaro Javier Fernandez Pricco. All rights reserved.
 
 
-#include "Player/AuraPlayerState.h"
+#include "Player/DotalikePlayerState.h"
 #include "AbilitySystem/DotalikeAbilitySystemComponent.h"
 #include "AbilitySystem/DotalikeAttributeSet.h"
 
-AAuraPlayerState::AAuraPlayerState()
+ADotalikePlayerState::ADotalikePlayerState()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UDotalikeAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
@@ -16,7 +16,7 @@ AAuraPlayerState::AAuraPlayerState()
 	NetUpdateFrequency = 100.f;
 }
 
-UAbilitySystemComponent* AAuraPlayerState::GetAbilitySystemComponent() const
+UAbilitySystemComponent* ADotalikePlayerState::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
 }

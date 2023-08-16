@@ -4,18 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "Character/CharacterBase.h"
-#include "AuraCharacter.generated.h"
+#include "DotalikeCharacter.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class DOTALIKE_API AAuraCharacter : public ACharacterBase
+class DOTALIKE_API ADotalikeCharacter : public ACharacterBase
 {
 	GENERATED_BODY()
 
 public:
-	AAuraCharacter();
+	ADotalikeCharacter();
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState() override;
 
