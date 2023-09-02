@@ -36,7 +36,12 @@ void AEnemyCharacter::UnHighlightActor()
 void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	InitAbilityActorInfo();
+}
 
+void AEnemyCharacter::InitAbilityActorInfo()
+{
 	check(AbilitySystemComponent);
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	Cast<UDotalikeAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
 }

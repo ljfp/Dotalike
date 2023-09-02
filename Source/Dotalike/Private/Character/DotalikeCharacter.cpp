@@ -41,6 +41,7 @@ void ADotalikeCharacter::InitAbilityActorInfo()
 	ADotalikePlayerState* DotalikePlayerState = GetPlayerState<ADotalikePlayerState>();
 	check(DotalikePlayerState);
 	DotalikePlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(DotalikePlayerState, this);
+	Cast<UDotalikeAbilitySystemComponent>(DotalikePlayerState->GetAbilitySystemComponent())->AbilityActorInfoSet();
 	AbilitySystemComponent = DotalikePlayerState->GetAbilitySystemComponent();
 	AttributeSet = DotalikePlayerState->GetAttributeSet();
 
