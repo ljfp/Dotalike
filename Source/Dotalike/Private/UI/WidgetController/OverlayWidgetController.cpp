@@ -3,6 +3,7 @@
 
 #include "UI/WidgetController/OverlayWidgetController.h"
 #include "AbilitySystem/DotalikeAttributeSet.h"
+#include "AbilitySystem/DotalikeAbilitySystemComponent.h"
 #include "GameplayEffectTypes.h"
 
 void UOverlayWidgetController::BroadcastInitialValues()
@@ -33,6 +34,17 @@ void UOverlayWidgetController::BindCallbackToDependencies()
 
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(DotalikeAttributeSet->GetMaxManaAttribute())
 		.AddUObject(this, &UOverlayWidgetController::OnMaxManaChangedCallback);
+
+	Cast<UDotalikeAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
+		[](const FGameplayTagContainer& AssetTags)
+		{
+			for (const FGameplayTag& Tag : AssetTags)
+			{
+				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, Msg);
+			}
+		}
+	);
 }
 
 void UOverlayWidgetController::OnHealthChangedCallback(const FOnAttributeChangeData& Data) const

@@ -6,6 +6,8 @@
 #include "AbilitySystemComponent.h"
 #include "DotalikeAbilitySystemComponent.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /*AssetTags*/);
+
 /**
  * 
  */
@@ -17,6 +19,7 @@ class DOTALIKE_API UDotalikeAbilitySystemComponent : public UAbilitySystemCompon
 public:
 	void AbilityActorInfoSet();
 
+	FEffectAssetTags EffectAssetTags;
 protected:
 	void EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
 };
